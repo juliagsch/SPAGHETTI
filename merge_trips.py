@@ -19,11 +19,9 @@ def format_soc(soc_str):
 def merge_trips(trips):
     merged_trips = []
     for trip in trips:
-        # Convert trip to list for easy manipulation
         trip_list = list(trip)
 
         if trip_list[2] == "No trips":
-            # Append empty values for Distance and Travel Time
             trip_list.extend(["", ""])
             merged_trips.append(trip_list)
             continue
@@ -72,7 +70,7 @@ def process_file(input_file, output_file):
         reader = csv.reader(infile)
         writer = csv.writer(outfile)
         headers = next(reader)
-        headers.extend(["Distance (km)", "Travel Time (min)"])  # Add new columns to headers
+        headers.extend(["Distance (km)", "Travel Time (min)"])  
         writer.writerow(headers)
 
         current_day = None
