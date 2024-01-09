@@ -88,6 +88,10 @@ The tool is built based on several assumptions, including:
 3. The EV's SOC never goes below the specified minimum SOC or above the maximum SOC.
 4. The tool generates different traces every time due to a random component.
 
+## Merge Overlapping Trips
+
+Depending on the configuration of the input parameters, the tool can generate multiple trips per day. If you want to merge overlapping trips to single trips in the output file (e.g. merge a commuting trip with a shopping trip on the way home), you can run the file merge_trips.py .
+
 ## License
 
 This tool is provided under the [MIT License](LICENSE). You are free to use, modify, and distribute it as needed. Refer to the LICENSE file for more details.
