@@ -1,5 +1,5 @@
-# This generator does not allow for fine-grained control of the non-commuting trips and does not model the SOC at each hour of the day.
-# each trip is outputed separately and multiple trips on the same day are not grouped together.
+# This generator does not allow for fine-grained control of the non-commuting trips, use ev_simulation_extended.py if yo wish more fine grained control over the non-commuting trips.
+# each trip is outputed separately and multiple trips on the same day are not grouped together, use merge_trips.py to merge overalpping trips.
 import argparse
 import numpy as np
 import csv
@@ -13,7 +13,7 @@ class ElectricVehicle:
         self.consumption = consumption
 
     def compute_SOC_arr(self, dist_km):
-        used_kwh = (dist_km * self.consumption) / 1000  # Convert Wh to kWh
+        used_kwh = (dist_km * self.consumption) / 1000  
         soc_change = used_kwh / self.battery_size
         return max(self.max_soc * self.battery_size - soc_change, self.min_soc * self.battery_size)
 
@@ -74,7 +74,7 @@ def generate_trip_data(args, ev):
             t_dep, t_arr = sample_commute_times(args)
             soc_start = current_soc
             soc_end = reduce_soc(commute_dist, soc_start)
-            commute_travel_time = (args.C_arr - args.C_dept) * 60  # in minutes
+            commute_travel_time = (args.C_arr - args.C_dept) * 60  
             trips_today.append((weekdays[week_day], format_time(t_dep), f"{soc_start:.2f}", format_time(t_arr), f"{soc_end:.2f}", f"{commute_dist:.2f}", round(commute_travel_time)))
             current_soc = soc_end
 
@@ -82,13 +82,13 @@ def generate_trip_data(args, ev):
         num_non_commute_trips = np.random.poisson(average_non_commute_trips_per_day)
         for _ in range(num_non_commute_trips):
             t_dep, t_arr = sample_non_commute_times(args)
-            # we assume that for non commuting trips, the EV is driving a 20% of the trip duration and parked the other half
+            # we assume that for non commuting trips, the EV is driving a 20% of the trip duration 
             travel_time_hours = (t_arr - t_dep) / 5
             # one-way non-commuting distance 
             non_commute_dist = travel_time_hours * average_speed_kmh /2
             soc_start = current_soc
             soc_end = reduce_soc(non_commute_dist, soc_start)
-            non_commute_travel_time = travel_time_hours * 60  # in minutes
+            non_commute_travel_time = travel_time_hours * 60  
             trips_today.append((weekdays[week_day], format_time(t_dep), f"{soc_start:.2f}", format_time(t_arr), f"{soc_end:.2f}", f"{non_commute_dist:.2f}", round(non_commute_travel_time)))
             current_soc = soc_end
 
