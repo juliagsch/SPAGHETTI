@@ -115,6 +115,6 @@ Anaïs Berkes - University of Cambridge
 
 ## Contact
 
-If you have any questions or feedback, please feel free to contact the author at [amcb6@cl.cam.ac.uk].
+If you have any questions or feedback, please feel free to contact the author at [amcb6@cam.ac.uk].
 
 ---
