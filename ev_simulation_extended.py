@@ -1,3 +1,4 @@
+# This script allows for fine-graines control over non-commuting trips.
 import argparse
 import numpy as np
 import csv
@@ -11,7 +12,7 @@ class ElectricVehicle:
         self.consumption = consumption
 
     def compute_SOC_arr(self, dist_km):
-        used_kwh = (dist_km * self.consumption) / 1000  # Convert Wh to kWh
+        used_kwh = (dist_km * self.consumption) / 1000  
         soc_change = used_kwh / self.battery_size
         return max(self.max_soc * self.battery_size - soc_change, self.min_soc * self.battery_size)
 
@@ -57,7 +58,7 @@ def generate_trip_data(args, ev, day_trips):
     }
 
     def reduce_soc(distance_km, current_soc):
-        energy_used = (distance_km * ev.consumption) / 1000  # Convert Wh to kWh
+        energy_used = (distance_km * ev.consumption) / 1000  
         soc_after_trip = current_soc - energy_used
         return max(ev.min_soc * ev.battery_size, soc_after_trip)
 
@@ -134,10 +135,6 @@ def sample_non_commute_times(args):
     t_dep_hour = random.uniform(8, 20)  # Assuming non-commuting trips can start between 8 AM and 8 PM
     trip_duration = random.uniform(0.5, 2)  # Duration between 30 minutes and 2 hours
     t_arr_hour = t_dep_hour + trip_duration
-
-    # Ensure times are within the day
-    if t_arr_hour >= 24:
-        t_arr_hour -= 24
 
     return t_dep_hour, t_arr_hour
 
