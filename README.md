@@ -62,12 +62,28 @@ python ev_simulation.py --output ev_data_simple.csv --days 365 --ev_battery 40 -
 This command runs the simulation for 30 days with specified parameters for EV characteristics and commuting details, but without specific non-commuting trip details.
 
 2. **With Detailed Non-Commuting Trip Inputs:**
-python ev_simulation.py --output ev_data_detailed.csv --days 30 --ev_battery 50 --max_soc 0.9 --min_soc 0.3 --consumption 150 --wfh_monday 1 --C_dist 20 --C_dept 8.00 --C_arr 18.00 --N_nc 4 --mon_nc 2 --mon_dept 10.00 --mon_arr 14.00 --mon_dist 15 --tue_nc 1 --tue_dept 11.00 --tue_arr 13.00 --tue_dist 10 --wed_nc 3 --wed_dept 9.00 --wed_arr 15.00 --wed_dist 20
+python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 50 --max_soc 0.9 --min_soc 0.3 --consumption 150 --wfh_monday 1 --C_dist 20 --C_dept 8.00 --C_arr 18.00 --N_nc 4 --mon_nc 2 --mon_dept 10.00 --mon_arr 14.00 --mon_dist 15 --tue_nc 1 --tue_dept 11.00 --tue_arr 13.00 --tue_dist 10 --wed_nc 3 --wed_dept 9.00 --wed_arr 15.00 --wed_dist 20
 
 This command runs the simulation for 30 days with detailed input parameters for both commuting and non-commuting trips, including specific trip counts, times, and distances for Monday, Tuesday, and Wednesday.
 
 
-4. Review the generated CSV file to analyze the EV usage data.
+4. Review the generated CSV file to analyse the EV usage data.
+
+## Commands for the 3 WFH Type
+
+# WFH T1: The Classic Commuter
+
+python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 0 --wfh_tuesday 0 --wfh_wednesday 0 --wfh_thursday 0  --wfh_friday 0 --C_dist 13.4 --C_dept 8.00 --C_arr 18.00 --N_nc 2 
+
+# WFH T2: The Hybrid Commuter
+
+Here, we provide the command for T2.3, who works from home 3 days per week.
+
+python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 11.3 --C_dept 8.00 --C_arr 18.00 --N_nc 2 
+
+# WFH T3: The Freelancer
+
+python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 1 --wfh_wednesday 1 --wfh_thursday 1  --wfh_friday 1 --C_dist 9.6 --C_dept 8.00 --C_arr 18.00 --N_nc 2 
 
 ## Testing
 
