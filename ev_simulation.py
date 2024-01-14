@@ -111,7 +111,6 @@ def sample_commute_times(args):
     t_dep_hour = random.uniform(args.C_dept - 0.25, args.C_dept + 0.25)  # Departure time with small variance
     t_arr_hour = random.uniform(args.C_arr - 0.25, args.C_arr + 0.25)  # Arrival time with small variance
     
-    # Ensure arrival is after departure
     while t_arr_hour <= t_dep_hour:
         t_arr_hour = random.uniform(args.C_arr - 0.25, args.C_arr + 0.25)
 
@@ -123,7 +122,6 @@ def sample_non_commute_times(args):
     trip_duration = random.uniform(0.5, 2)  # Duration between 30 minutes and 2 hours
     t_arr_hour = t_dep_hour + trip_duration
 
-    # Ensure times are within the day
     if t_arr_hour >= 24:
         t_arr_hour -= 24
 
