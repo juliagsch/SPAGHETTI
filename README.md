@@ -41,7 +41,7 @@ The ev_simulation.py script accepts several command-line arguments to customise 
 - `--min_soc`: The minimum state of charge as a fraction (0 to 1) of the EV. Default is `0.2`.
 - `--consumption`: The EV's energy consumption in Wh/km. The default value is `164`.
 - `--wfh_[day]`: Indicates whether the day is a work-from-home day (`1` for yes, `0` for no). Replace `[day]` with `monday`, `tuesday`, etc. Default is `0` for all days.
-- `--C_dist`: Typical commute distance in kilometers. The default value is `20.0`.
+- `--C_dist`: Typical two-way commute distance in kilometers. The default value is `20.0`.
 - `--C_dept`: Typical departure time for commuting. The default value is `7.45`, which correponds to 7h45.
 - `--C_arr`: Typical arrival time from commuting. The default value is `17.30`, which correponds to 17h30.
 - `--N_nc`: Weekly number of non-commuting one-way trips. Default is `5`.
@@ -53,7 +53,7 @@ For each day of the week, the following optional parameters can be set in the fi
 - `--[day]_nc`: Number of non-commuting trips for the day.
 - `--[day]_dept`: Typical departure time for non-commuting trips.
 - `--[day]_arr`: Typical arrival time for non-commuting trips.
-- `--[day]_dist`: Typical distance for non-commuting trips in kilometers.
+- `--[day]_dist`: Typical two-way distance for non-commuting trips in kilometers.
 
 If these parameters are not provided for a specific day, random values are used to generate non-commuting trip data for that day.
 
