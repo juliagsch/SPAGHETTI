@@ -16,10 +16,8 @@ This script generates synthetic data for electric vehicle (EV) usage over a spec
 To use the EV Usage Data Generator, follow these steps:
 
 1. Clone the repository or download the tool to your local machine.
- 
-2. Modify the input parameters in the `ev_generator.py` file to match your desired settings. These parameters include EV battery size, SOC limits, consumption rate, commuting patterns, and more.
 
-3. Run the tool with the following command:
+2. Run the tool with the following command and any additional inputs that you would like to specify (see below):
 
    ```
    python ev_generator.py
@@ -27,7 +25,7 @@ To use the EV Usage Data Generator, follow these steps:
 
    By default, the tool will generate synthetic EV usage data for 365 days and save it to a CSV file named `ev_usage.csv`. You can specify different parameters and output filenames by providing command-line arguments.
 
-4. Output: The output file contains one line for each generated trip: Day number, Day name, Departure Time (from home), SOC on Departure, Arrival Time (back home), SOC on Arrival, DIstance traveled (km), Time spend driving (km). The latter two can be useful to compute the SOC reduction over time. 
+4. Output: The output file contains one line for each generated trip: Day number, Day name, Departure Time (from home), SOC on Departure, Arrival Time (back home), SOC on Arrival, Distance traveled (km), Time spend driving (km). The latter two can be useful to compute the SOC reduction over time. 
 
 ## Arguments
 
