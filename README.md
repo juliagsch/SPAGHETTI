@@ -57,12 +57,17 @@ If these parameters are not provided for a specific day, random values are used 
 ### Example Commands
 
 1. **Without Non-Commuting Trip Inputs:**
+
+```
 python ev_simulation.py --output ev_data_simple.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --C_dist 20 --C_dept 7.45 --C_arr 17.30 --N_nc 5
+```
 
 This command runs the simulation for 365 days with specified parameters for EV characteristics and commuting details, but without specific non-commuting trip details.
 
 2. **With Detailed Non-Commuting Trip Inputs:**
+```
 python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 50 --max_soc 0.9 --min_soc 0.3 --consumption 150 --wfh_monday 1 --C_dist 20 --C_dept 8.00 --C_arr 18.00 --N_nc 4 --mon_nc 2 --mon_dept 10.00 --mon_arr 14.00 --mon_dist 15 --tue_nc 1 --tue_dept 11.00 --tue_arr 13.00 --tue_dist 10 --wed_nc 3 --wed_dept 9.00 --wed_arr 15.00 --wed_dist 20
+```
 
 This command runs the simulation for 365 days with detailed input parameters for both commuting and non-commuting trips, including specific trip counts, times, and distances for Monday, Tuesday, and Wednesday.
 
