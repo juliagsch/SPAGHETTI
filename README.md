@@ -86,7 +86,7 @@ python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 40
 Here, we provide the command for T2.3, who works from home 3 days per week.
 
 ```
-python ev_simulation.py --output ev_data_detailed.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 11.3 --C_dept 8.00 --C_arr 18.00 --N_nc 2
+python ev_simulation_extended.py --output ev_data_detailed.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 11.3 --C_dept 8.00 --C_arr 18.00 --N_nc 2
 ```
 
 ### WFH T3: The Freelancer
