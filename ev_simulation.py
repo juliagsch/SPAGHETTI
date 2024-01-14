@@ -1,4 +1,4 @@
-# This generator does not allow for fine-grained control of the non-commuting trips, use ev_simulation_extended.py if yo wish more fine grained control over the non-commuting trips.
+# This generator does not allow for fine-grained control of the non-commuting trips, use ev_simulation_extended.py if you wish more fine grained control over the non-commuting trips.
 # each trip is outputed separately and multiple trips on the same day are not grouped together, use merge_trips.py to merge overalpping trips.
 import argparse
 import numpy as np
