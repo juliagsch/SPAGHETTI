@@ -3,7 +3,9 @@
 ## Overview
 
 This project is called SPAGHETTI (Synthetic Patterns & Activity Generator for Home-Energy & Tomorrow’s Transportation Investigation) and allows for the generation of both personalised and standardised electric vehicle (EV) usage traces. 
-The script generates synthetic data EV usage over a specified number of days. It simulates both commuting and non-commuting trips, taking into account the state of charge (SOC), battery capacity, and energy consumption of the vehicle. The script is designed to be flexible, allowing users to specify various parameters to tailor the simulation to their specific needs.
+The script generates synthetic data EV usage over a specified number of days. It simulates both commuting and non-commuting trips, taking into account the state of charge (SOC), battery capacity, and energy consumption of the vehicle. The script is designed to be flexible, allowing users to specify various parameters to tailor the simulation to their specific needs. 
+
+Through our research, we have derived the three most common EV user types. To model traces for these three standardised types, use the command specified below.
 
 ## Features
 
