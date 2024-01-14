@@ -86,8 +86,10 @@ def generate_trip_data(args, ev, day_trips):
         if day_trip is not None:
             for _ in range(day_trip.num_trips):
                 t_dep, t_arr = day_trip.t_dep, day_trip.t_arr
-                travel_time_hours = t_arr - t_dep
-                non_commute_dist = day_trip.dist
+                # we assume that for non commuting trips, the EV is driving a 20% of the trip duration 
+                travel_time_hours = (t_arr - t_dep) * 0.2
+                # one-way non-commuting distance 
+                non_commute_dist = day_trip.dist / 2
                 soc_start = current_soc
                 soc_end = reduce_soc(non_commute_dist, soc_start)
                 trips_today.append((weekdays[week_day], format_time(t_dep), soc_start, format_time(t_arr), soc_end))
