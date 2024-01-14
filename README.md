@@ -1,8 +1,9 @@
-# Electric Vehicle Usage Data Simulation
+# SPAGHETTI: Electric Vehicle Usage Data Simulation
 
 ## Overview
 
-This script generates synthetic data for electric vehicle (EV) usage over a specified number of days. It simulates both commuting and non-commuting trips, taking into account the state of charge (SOC), battery capacity, and energy consumption of the vehicle. The script is designed to be flexible, allowing users to specify various parameters to tailor the simulation to their specific needs.
+This project is called SPAGHETTI (Synthetic Patterns & Activity Generator for Home-Energy & Tomorrow’s Transportation Investigation) and allows for the generation of both personalised and standardised electric vehicle (EV) usage traces. 
+The script generates synthetic data EV usage over a specified number of days. It simulates both commuting and non-commuting trips, taking into account the state of charge (SOC), battery capacity, and energy consumption of the vehicle. The script is designed to be flexible, allowing users to specify various parameters to tailor the simulation to their specific needs.
 
 ## Features
 
