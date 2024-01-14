@@ -115,6 +115,10 @@ The tool is built based on several assumptions, including:
 
 Depending on the configuration of the input parameters, the tool can generate multiple trips per day. If you want to merge overlapping trips to single trips in the output file (e.g. merge a commuting trip with a shopping trip on the way home), you can run the file merge_trips.py .
 
+```
+python merge_trips.py
+```
+
 ## Author
 
 Anaïs Berkes - University of Cambridge
