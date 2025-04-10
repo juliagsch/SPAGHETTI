@@ -44,7 +44,7 @@ The ev_simulation.py script accepts several command-line arguments to customise 
 - `--C_dist`: Typical two-way commute distance in kilometers. The default value is `20.0`.
 - `--C_dept`: Typical departure time for commuting. The default value is `7.45`, which correponds to 7h45.
 - `--C_arr`: Typical arrival time from commuting. The default value is `17.30`, which correponds to 17h30.
-- `--N_nc`: Weekly number of non-commuting one-way trips. Default is `5`.
+- `--N_nc`: Weekly number of non-commuting round trips. Default is `3`.
 
 ### Non-Commuting Trip Parameters (Optional)
 
@@ -81,21 +81,21 @@ This command runs the simulation for 365 days with detailed input parameters for
 ### WFH T1: The Classic Commuter
 
 ```
-python ev_simulation.py --output ev_data_T1.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 0 --wfh_tuesday 0 --wfh_wednesday 0 --wfh_thursday 0  --wfh_friday 0 --C_dist 13.4 --C_dept 8.00 --C_arr 18.00 --N_nc 2
+python ev_simulation.py --output ev_data_T1.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 0 --wfh_tuesday 0 --wfh_wednesday 0 --wfh_thursday 0  --wfh_friday 0 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3
 ```
 
-### WFH T2: The Hybrid Commuter
+### WFH T2.3: The Hybrid Commuter
 
 Here, we provide the command for T2.3, who works from home 3 days per week.
 
 ```
-python ev_simulation.py --output ev_data_T2.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 11.3 --C_dept 8.00 --C_arr 18.00 --N_nc 2
+python ev_simulation.py --output ev_data_T2.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3
 ```
 
 ### WFH T3: The Freelancer
 
 ```
-python ev_simulation.py --output ev_data_T3.csv --days 365 --ev_battery 40 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 1 --wfh_wednesday 1 --wfh_thursday 1  --wfh_friday 1 --C_dist 9.6 --C_dept 8.00 --C_arr 18.00 --N_nc 2
+python ev_simulation.py --output ev_data_T3.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 1 --wfh_wednesday 1 --wfh_thursday 1  --wfh_friday 1 --C_dist 0.0 --C_dept 8.00 --C_arr 18.00 --N_nc 3
 ```
 
 ## Testing

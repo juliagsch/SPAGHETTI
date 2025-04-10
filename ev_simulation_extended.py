@@ -41,8 +41,8 @@ def validate_input(args):
             raise ValueError("WFH day inputs must be either 0 or 1")
     if args.days <= 0:
         raise ValueError("Number of days must be a positive number")
-    if args.C_dist <= 0 :
-        raise ValueError("Commute distance must be positive")
+    if args.C_dist < 0 :
+        raise ValueError("Commute distance must be non-negative")
     if args.N_nc < 0:
         raise ValueError("Number of weekly non-commuting trips must be non-negative")
 
@@ -63,7 +63,7 @@ def generate_trip_data(args, ev, day_trips):
         return max(ev.min_soc * ev.battery_size, soc_after_trip)
 
     average_speed_kmh = 50
-    average_non_commute_trips_per_day = (args.N_nc / 2) / 7
+    average_non_commute_trips_per_day = args.N_nc / 7
 
     for day in range(args.days):
         week_day = day % 7
@@ -88,8 +88,8 @@ def generate_trip_data(args, ev, day_trips):
                 t_dep, t_arr = day_trip.t_dep, day_trip.t_arr
                 # we assume that for non commuting trips, the EV is driving a 20% of the trip duration 
                 travel_time_hours = (t_arr - t_dep) * 0.2
-                # one-way non-commuting distance 
-                non_commute_dist = day_trip.dist / 2
+                # Non-commuting distance 
+                non_commute_dist = day_trip.dist
                 soc_start = current_soc
                 soc_end = reduce_soc(non_commute_dist, soc_start)
                 trips_today.append((weekdays[week_day], format_time(t_dep), soc_start, format_time(t_arr), soc_end))

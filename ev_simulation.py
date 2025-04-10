@@ -35,8 +35,8 @@ def validate_input(args):
             raise ValueError("WFH day inputs must be either 0 or 1")
     if args.days <= 0:
         raise ValueError("Number of days must be a positive number")
-    if args.C_dist <= 0 :
-        raise ValueError("Commute distance must be positive")
+    if args.C_dist < 0 :
+        raise ValueError("Commute distance must be non-negative")
     if args.N_nc < 0:
         raise ValueError("Number of weekly non-commuting trips must be non-negative")
 
@@ -56,8 +56,8 @@ def generate_trip_data(args, ev):
         energy_used = (distance_km * ev.consumption) / 1000  # Convert Wh to kWh
         soc_after_trip = current_soc - energy_used
         return max(ev.min_soc * ev.battery_size, soc_after_trip)
-# N_nc is the number of weekly non-commuting round trips
-    average_non_commute_trips_per_day = (args.N_nc / 2) / 7
+    # N_nc is the number of weekly non-commuting round trips
+    average_non_commute_trips_per_day = args.N_nc / 7
     average_speed_kmh = 50
 
     for day in range(args.days):
@@ -83,9 +83,9 @@ def generate_trip_data(args, ev):
         for _ in range(num_non_commute_trips):
             t_dep, t_arr = sample_non_commute_times(args)
             # we assume that for non commuting trips, the EV is driving a 20% of the trip duration 
-            travel_time_hours = (t_arr - t_dep) / 5
-            # one-way non-commuting distance 
-            non_commute_dist = travel_time_hours * average_speed_kmh /2
+            travel_time_hours = (t_arr - t_dep) * 0.2
+            # Non-commuting distance round trip
+            non_commute_dist = travel_time_hours * average_speed_kmh
             soc_start = current_soc
             soc_end = reduce_soc(non_commute_dist, soc_start)
             non_commute_travel_time = travel_time_hours * 60  
@@ -119,7 +119,7 @@ def sample_commute_times(args):
 def sample_non_commute_times(args):
     """Randomly sample departure and arrival times for non-commuting trips, ensuring consistency"""
     t_dep_hour = random.uniform(8, 20)  # Assuming non-commuting trips can start between 8 AM and 8 PM
-    trip_duration = random.uniform(0.5, 2)  # Duration between 30 minutes and 2 hours
+    trip_duration = random.uniform(1, 2)  # Duration between 1 and 2 hours
     t_arr_hour = t_dep_hour + trip_duration
 
     if t_arr_hour >= 24:
@@ -163,10 +163,10 @@ if __name__ == '__main__':
     parser.add_argument('--wfh_wednesday', type=int, default=0, choices=[0, 1], help='WFH on Wednesday')
     parser.add_argument('--wfh_thursday', type=int, default=0, choices=[0, 1], help='WFH on Thursday')
     parser.add_argument('--wfh_friday', type=int, default=0, choices=[0, 1], help='WFH on Friday')
-    parser.add_argument('--C_dist', type=float, default=20.0, help='Typical one-way commute distance in km')
+    parser.add_argument('--C_dist', type=float, default=20.0, help='Typical return commute distance in km')
     parser.add_argument('--C_dept', type=float, default=7.45, help='Departure time for commuting')
     parser.add_argument('--C_arr', type=float, default=17.30, help='Arrival time from commuting')
-    parser.add_argument('--N_nc', type=int, default=5, help='Weekly number of non-commuting one-way trips')
+    parser.add_argument('--N_nc', type=int, default=3, help='Weekly number of non-commuting round trips')
 
 
     args = parser.parse_args()
