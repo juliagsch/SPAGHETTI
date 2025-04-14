@@ -45,6 +45,7 @@ The ev_simulation.py script accepts several command-line arguments to customise 
 - `--C_dept`: Typical departure time for commuting. The default value is `7.45`, which correponds to 7h45.
 - `--C_arr`: Typical arrival time from commuting. The default value is `17.30`, which correponds to 17h30.
 - `--N_nc`: Weekly number of non-commuting round trips. Default is `3`.
+- `--N_hw`: Number of holiday weeks per year. Default is `6`.
 
 ### Non-Commuting Trip Parameters (Optional)
 
@@ -81,7 +82,7 @@ This command runs the simulation for 365 days with detailed input parameters for
 ### WFH T1: The Classic Commuter
 
 ```
-python ev_simulation.py --output ev_data_T1.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 0 --wfh_tuesday 0 --wfh_wednesday 0 --wfh_thursday 0  --wfh_friday 0 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3
+python ev_simulation.py --output ev_data_T1.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 0 --wfh_tuesday 0 --wfh_wednesday 0 --wfh_thursday 0  --wfh_friday 0 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3 --N_hw 6
 ```
 
 ### WFH T2.3: The Hybrid Commuter
@@ -89,7 +90,7 @@ python ev_simulation.py --output ev_data_T1.csv --days 365 --ev_battery 60 --max
 Here, we provide the command for T2.3, who works from home 3 days per week.
 
 ```
-python ev_simulation.py --output ev_data_T2.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3
+python ev_simulation.py --output ev_data_T2.csv --days 365 --ev_battery 60 --max_soc 0.8 --min_soc 0.2 --consumption 164 --wfh_monday 1 --wfh_tuesday 0 --wfh_wednesday 1 --wfh_thursday 0  --wfh_friday 1 --C_dist 62.8 --C_dept 8.00 --C_arr 18.00 --N_nc 3 --N_hw 6
 ```
 
 ### WFH T3: The Freelancer

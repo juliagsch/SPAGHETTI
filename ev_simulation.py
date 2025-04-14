@@ -58,10 +58,15 @@ def generate_trip_data(args, ev):
         return max(ev.min_soc * ev.battery_size, soc_after_trip)
     # N_nc is the number of weekly non-commuting round trips
     average_non_commute_trips_per_day = args.N_nc / 7
+    average_holiday_weeks = args.N_hw
     average_speed_kmh = 50
-
+    week_number = 0
+    holiday_weeks = random.sample([i for i in range(1,53)], average_holiday_weeks)
+    print(holiday_weeks)
     for day in range(args.days):
         week_day = day % 7
+        if(week_day == 0):
+            week_number += 1
         is_wfh_day = wfh_days.get(week_day, 0) == 1
         is_weekend = week_day in [5, 6]
         # assume the EV is fully charged at the beginning of each day
@@ -69,7 +74,7 @@ def generate_trip_data(args, ev):
         trips_today = []
 
         # Add commuting trips on non-WFH weekdays
-        if not is_wfh_day and not is_weekend:
+        if not is_wfh_day and not is_weekend and not week_number in holiday_weeks:
             commute_dist = random.uniform(args.C_dist - args.C_dist * 0.1, args.C_dist + args.C_dist * 0.1)
             t_dep, t_arr = sample_commute_times(args)
             soc_start = current_soc
@@ -167,6 +172,7 @@ if __name__ == '__main__':
     parser.add_argument('--C_dept', type=float, default=7.45, help='Departure time for commuting')
     parser.add_argument('--C_arr', type=float, default=17.30, help='Arrival time from commuting')
     parser.add_argument('--N_nc', type=int, default=3, help='Weekly number of non-commuting round trips')
+    parser.add_argument('--N_hw', type=int, default=6, help='Number of holiday weeks per year')
 
 
     args = parser.parse_args()
